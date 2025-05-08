@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:travelapp_ui/homescreen.dart';
+import 'package:travelapp_ui/screens/bottom_nav/bottom_nav.dart';
 
 class SplashScreen extends StatefulWidget {
   const SplashScreen({super.key});
@@ -25,7 +25,7 @@ class _SplashScreenState extends State<SplashScreen> {
     Future.delayed(Duration(seconds: 3), () {
       Navigator.pushReplacement(
         context,
-        MaterialPageRoute(builder: (context) => HomeScreen()),
+        MaterialPageRoute(builder: (context) => BottomNav()),
       );
     });
   }
