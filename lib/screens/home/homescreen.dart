@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:travelapp_ui/screens/pic_template.dart';
 import 'package:travelapp_ui/utilities/fitlerbutton.dart';
 import 'package:travelapp_ui/utilities/picturetemplate.dart';
 
@@ -10,8 +11,6 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
-  bool isFav = false;
-
   List<Map<String, dynamic>> places = [
     {
       "mountainName": "K2",
@@ -47,19 +46,14 @@ class _HomeScreenState extends State<HomeScreen> {
     return Scaffold(
       backgroundColor: Colors.white,
       body: Column(
-        mainAxisAlignment: MainAxisAlignment.start,
         children: [
           Container(
             height: 130,
             width: double.infinity,
             color: Colors.white,
             child: Column(
-              mainAxisAlignment: MainAxisAlignment.start,
-
               children: [
                 Row(
-                  mainAxisAlignment: MainAxisAlignment.start,
-
                   children: [
                     Padding(
                       padding: const EdgeInsets.only(left: 20.0, top: 26),
@@ -183,19 +177,28 @@ class _HomeScreenState extends State<HomeScreen> {
                 final place = places[index];
                 return Row(
                   children: [
-                    PictureContainer(
-                      mountainName: place["mountainName"],
-                      cityLocation: place["cityLocation"],
-                      countryName: place["countryName"],
-                      rating: place["rating"],
-                      linkPic: place["linkPic"],
-                      isFavorite: place["isFavorite"],
-                      onToggleFavorite: () {
-                        setState(() {
-                          places[index]["isFavorite"] =
-                              !places[index]["isFavorite"];
-                        });
-                      },
+                    GestureDetector(
+                      onTap:
+                          () => Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => PicTemplate(place: place),
+                            ),
+                          ),
+                      child: PictureContainer(
+                        mountainName: place["mountainName"],
+                        cityLocation: place["cityLocation"],
+                        countryName: place["countryName"],
+                        rating: place["rating"],
+                        linkPic: place["linkPic"],
+                        isFavorite: place["isFavorite"],
+                        onToggleFavorite: () {
+                          setState(() {
+                            places[index]["isFavorite"] =
+                                !places[index]["isFavorite"];
+                          });
+                        },
+                      ),
                     ),
                     SizedBox(width: 25),
                   ],
